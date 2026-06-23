@@ -1,0 +1,520 @@
+html_content = """<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yudhistira Law Firm - Keadilan & Integritas Tanpa Kompromi</title>
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        :root {
+            --navy-dark: #0A192F;
+            --navy-light: #172A45;
+            --gold-primary: #D4AF37;
+            --gold-hover: #AA8417;
+            --text-light: #F4F6F9;
+            --text-muted: #8892B0;
+        }
+
+        body {
+            background-color: var(--navy-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Top Bar Info */
+        .top-bar {
+            background-color: #050E1A;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 10px 5%;
+            font-size: 0.9rem;
+            color: var(--gold-primary);
+            text-align: center;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 25, 47, 0.95);
+            padding: 20px 5%;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: table;
+            width: 100%;
+        }
+
+        .logo {
+            display: table-cell;
+            vertical-align: middle;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--gold-primary);
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        .cta-btn-nav {
+            background-color: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 8px 18px;
+            border-radius: 3px;
+            margin-left: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cta-btn-nav:hover {
+            background-color: var(--gold-primary);
+            color: var(--navy-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 5% 100px 5%;
+            text-align: center;
+            background: radial-gradient(circle, rgba(23,42,69,1) 0%, rgba(10,25,47,1) 100%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        .hero h1 span {
+            color: var(--gold-primary);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+
+        .hero-buttons a {
+            display: inline-block;
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 3px;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--gold-primary);
+            color: var(--navy-dark);
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--gold-hover);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Section Global Layout */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--gold-primary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            font-size: 1.1rem;
+        }
+
+        /* Profile / About Section */
+        .about-content {
+            background-color: var(--navy-light);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 40px;
+            border-radius: 5px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        /* Practice Areas (Layanan) */
+        .grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .card-row {
+            margin-bottom: 20px;
+        }
+
+        .card {
+            display: inline-block;
+            width: 28%;
+            background-color: var(--navy-light);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 30px 20px;
+            margin: 1.5%;
+            border-radius: 4px;
+            vertical-align: top;
+            text-align: left;
+            transition: transform 0.3s, border 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+        }
+
+        .card h3 {
+            color: var(--gold-primary);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Team Section */
+        .team-row {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .team-card {
+            display: inline-block;
+            width: 22%;
+            background-color: var(--navy-light);
+            border-top: 4px solid var(--gold-primary);
+            border-left: 1px solid rgba(212, 175, 55, 0.1);
+            border-right: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 25px 15px;
+            margin: 1%;
+            vertical-align: top;
+            text-align: center;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .avatar-placeholder {
+            width: 80px;
+            height: 80px;
+            background-color: var(--navy-dark);
+            border: 2px solid var(--gold-primary);
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+            line-height: 76px;
+            font-size: 1.5rem;
+            color: var(--gold-primary);
+            font-weight: bold;
+        }
+
+        .team-card h4 {
+            color: #ffffff;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            min-height: 55px;
+        }
+
+        .team-card p {
+            color: var(--gold-primary);
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .team-card span {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            display: block;
+        }
+
+        /* Contact Section & Footer */
+        .contact-section {
+            background-color: #06101E;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-table {
+            display: table;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .footer-col {
+            display: table-cell;
+            width: 50%;
+            padding: 20px;
+            vertical-align: top;
+        }
+
+        .footer-col h3 {
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col p {
+            color: var(--text-light);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col strong {
+            color: var(--gold-primary);
+        }
+
+        .bottom-footer {
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding-top: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsiveness for standard view */
+        @media (max-width: 900px) {
+            .card { width: 45%; }
+            .team-card { width: 45%; }
+        }
+        @media (max-width: 600px) {
+            .card { width: 90%; }
+            .team-card { width: 90%; }
+            .footer-col { display: block; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        📍 Jl. Terusan Jakarta No.126 Antapani Tengah, Kota Bandung, Jawa Barat | 📞 Konsultasi Hukum Profesional
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">YUDHISTIRA</a>
+            <div class="nav-links">
+                <a href="#tentang">Tentang</a>
+                <a href="#layanan">Layanan</a>
+                <a href="#tim">Tim Hukum</a>
+                <a href="#kontak" class="cta-btn-nav">Hubungi Kami</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Keadilan, Kepastian Hukum & <span>Integritas</span></h1>
+        <p>Yudhistira Law Firm mendampingi dan memberikan solusi hukum strategis, berdedikasi tinggi, serta terpercaya untuk melindungi hak-hak hukum Anda.</p>
+        <div class="hero-buttons">
+            <a href="#kontak" class="btn-primary">Konsultasi Sekarang</a>
+            <a href="#layanan" class="btn-secondary">Layanan Kami</a>
+        </div>
+    </section>
+
+    <!-- Tentang Kami Section -->
+    <section id="tentang">
+        <h2 class="section-title">Tentang Firma Hukum Yudhistira</h2>
+        <div class="section-subtitle">Mengenal lebih dekat asas komitmen dan profesionalisme kami.</div>
+        <div class="about-content">
+            <p>Diambil dari nama tokoh yang melambangkan keteguhan, kejujuran, dan keadilan, <strong>Yudhistira Law Firm</strong> hadir sebagai benteng hukum yang berintegritas. Berkedudukan di Kota Bandung, kami siap melayani klien perorangan maupun korporasi.</p>
+            <p>Kami meyakini bahwa setiap permasalahan hukum memerlukan penanganan yang komprehensif, taktis, dan transparan untuk mencapai kepastian hukum yang berkeadilan.</p>
+        </div>
+    </section>
+
+    <!-- Layanan / Practice Areas Section -->
+    <section id="layanan">
+        <h2 class="section-title">Bidang Praktik Hukum</h2>
+        <div class="section-subtitle">Kompetensi hukum utama yang kami tawarkan untuk menyelesaikan perkara Anda.</div>
+        <div class="grid-container">
+            <div class="card-row">
+                <div class="card">
+                    <h3>Hukum Keluarga</h3>
+                    <p>Penanganan perkara sengketa keluarga, perkawinan, hak asuh anak, pembagian harta bersama, waris, serta mediasi litigasi dan non-litigasi.</p>
+                </div>
+                <div class="card">
+                    <h3>Hukum Pidana & Perdata</h3>
+                    <p>Pendampingan hukum dalam sengketa pidana umum/khusus, sengketa wanprestasi perdata, eksekusi jaminan, dan persidangan di pengadilan.</p>
+                </div>
+                <div class="card">
+                    <h3>Hukum Bisnis & Korporasi</h3>
+                    <p>Penyusunan legalitas perusahaan, pembuatan draft kontrak komersial, merger & akuisisi, serta penanganan sengketa ketenagakerjaan.</p>
+                </div>
+            </div>
+            <div class="card-row">
+                <div class="card">
+                    <h3>Cyber & Media Law</h3>
+                    <p>Penanganan kasus sengketa informasi elektronik, pelanggaran hak privasi, sengketa pers/media, komunikasi publik, serta transaksi digital.</p>
+                </div>
+                <div class="card">
+                    <h3>Hukum Syariah</h3>
+                    <p>Layanan khusus sengketa ekonomi syariah, perbankan syariah, serta sengketa yang menjadi kewenangan peradilan agama.</p>
+                </div>
+                <div class="card">
+                    <h3>Kekayaan Intelektual</h3>
+                    <p>Perlindungan hukum dan pendaftaran Hak Cipta, Merek, Paten, serta rahasia dagang bagi pelaku usaha dan kreator konten.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tim Hukum Section -->
+    <section id="tim">
+        <h2 class="section-title">Para Advokat & Rekan</h2>
+        <div class="section-subtitle">Didukung oleh 8 profesional hukum yang ahli, berdedikasi, dan berpengalaman.</div>
+        <div class="grid-container">
+            
+            <!-- Row 1 Team -->
+            <div class="team-row">
+                <div class="team-card">
+                    <div class="avatar-placeholder">RRM</div>
+                    <h4>Dr. Adv. Rasya Restu Mahesya, S.H., M.H., CPM.</h4>
+                    <p>Managing Partner</p>
+                    <span>Spesialis Hukum Keluarga & Mediator</span>
+                </div>
+                <div class="team-card">
+                    <div class="avatar-placeholder">ADM</div>
+                    <h4>Prof. Adv. Adril Dika Mustofa, M.H.</h4>
+                    <p>Senior Partner</p>
+                    <span>Guru Besar & Ahli Hukum Pidana/Perdata</span>
+                </div>
+                <div class="team-card">
+                    <div class="avatar-placeholder">ALH</div>
+                    <h4>Adv. K.H. Ade Lukmanul Hakim, S.H.</h4>
+                    <p>Partner</p>
+                    <span>Spesialis Hukum Syariah & Islam</span>
+                </div>
+                <div class="team-card">
+                    <div class="avatar-placeholder">SK</div>
+                    <h4>Prof. Hj Adv. Sri Khoirunisa, S.H., M.H.</h4>
+                    <p>Partner</p>
+                    <span>Hukum Korporasi & Bisnis</span>
+                </div>
+            </div>
+
+            <!-- Row 2 Team -->
+            <div class="team-row">
+                <div class="team-card">
+                    <div class="avatar-placeholder">UAI</div>
+                    <h4>Adv. Uawah Aulia Istiqomah, S.H.</h4>
+                    <p>Associate</p>
+                    <span>Hukum Kontrak & Litigasi</span>
+                </div>
+                <div class="team-card">
+                    <div class="avatar-placeholder">RK</div>
+                    <h4>Adv. Rani Karlina, S.H., M.Hum.</h4>
+                    <p>Partner</p>
+                    <span>Hukum Perdata & Hak Asasi Manusia</span>
+                </div>
+                <div class="team-card">
+                    <div class="avatar-placeholder">MSM</div>
+                    <h4>Adv. Mughni Syukril Mubarok, S.H., M.Kom.</h4>
+                    <p>Partner</p>
+                    <span>Cyber Law & Kekayaan Intelektual</span>
+                </div>
+                <div class="team-card">
+                    <div class="avatar-placeholder">RPA</div>
+                    <h4>Adv. Rionaldo Putra Alsyarif, S.H., M.I.Kom.</h4>
+                    <p>Partner</p>
+                    <span>Hukum Media & Komunikasi Publik</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Kontak & Lokasi Section -->
+    <section id="kontak" class="contact-section">
+        <div class="footer-container">
+            <div class="footer-table">
+                <div class="footer-col">
+                    <h3>YUDHISTIRA LAW FIRM</h3>
+                    <p>Kami siap memberikan representasi hukum terbaik demi mempertahankan hak dan kepentingan legal Anda.</p>
+                    <p style="margin-top: 25px;"><strong>Jam Operasional:</strong><br>Senin - Jumat: 09.00 - 17.00 WIB</p>
+                </div>
+                <div class="footer-col">
+                    <h3>LOKASI & KONTAK</h3>
+                    <p><strong>Alamat Kantor:</strong><br>Jl. Terusan Jakarta No.126, Antapani Tengah, Kec. Antapani, Kota Bandung, Jawa Barat</p>
+                    <p><strong>Email:</strong> info@yudhistiralawfirm.com</p>
+                    <p><strong>Telepon:</strong> (022) 1234-5678</p>
+                </div>
+            </div>
+            <div class="bottom-footer">
+                <p>&copy; 2026 Yudhistira Law Firm. All Rights Reserved. Designed with Navy & Gold Elegance.</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("File index.html berhasil dibuat.")
